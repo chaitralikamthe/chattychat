@@ -1,9 +1,9 @@
 ChattyChat application
 
 Technology-
--Backend-Spring boot with JAVA 
--Frontend- React
--Database- MySQL
+- Backend-Spring boot with JAVA, spring security, spring JPA
+- Frontend- React, react routers, react hooks
+- Database- MySQL to store and access the data
 
 Functionalities-
 - The application is secured using spring security. Users can register themselves to get access to private messaging. The public chatroom will be available for eveyone to join publicly.
