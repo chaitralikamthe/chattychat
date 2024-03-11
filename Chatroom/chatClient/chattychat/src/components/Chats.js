@@ -1,11 +1,7 @@
 import React, { useState,useEffect } from 'react'
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {useLocation} from 'react-router-dom';
 import {over} from 'stompjs';
 import SockJS from 'sockjs-client';
-import axios from 'axios';
-import { connect } from 'net';
-
 
 var stompClient=null;
 const Chats = () => {
@@ -36,8 +32,6 @@ stompClient.connect({},()=>{onConnected()},onError);
         console.log(err);        
     }
                                
-
-
     const userJoin=()=>{
         const chatMessage={
                 senderName:userdata.userName,
@@ -115,10 +109,10 @@ stompClient.connect({},()=>{onConnected()},onError);
     }   
 
   return (
-    <div className='container'>
-        {userdata.connected== false ?
-        <div><button id="start" onClick={connect}>Start</button></div>
-        :
+    <div className='container'>  
+    {      userdata.connected ==false ?
+        <div><button id="start" onClick={connect}>Start</button></div>   
+        : 
         <div className='chat-box'>
             <div className='member-list'>
             <h1 className='joiner'>{userdata.userName}'s Chatbox</h1>
@@ -188,7 +182,7 @@ stompClient.connect({},()=>{onConnected()},onError);
             </div>
 
          }</div>  
-        }    
+        }     
    </div>
                        
 )

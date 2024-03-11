@@ -14,14 +14,16 @@ function LoginPage() {
 				setError('Please enter both regEmail and regPassword.'); 
 				return; 
 			} 
-
+			else{
 			const response = await axios.post('http://localhost:8081/auth/signin', { regEmail, regPassword }); 
 			console.log('Login successful:', response.data); 
             const param=regEmail.substring(0,regEmail.indexOf("@"));
-			history('/chats',{state:{userName :param,
-                           receiverName:"",
-                            connected:false,
-                            message:""}}); 
+			history('/chats',{state:{
+				userName : param,
+				receiverName:"",
+				connected:false,
+				message:""		}}); 
+			}
 		} catch (error) { 
 			console.error('Login failed:', error.response ? error.response.data : error.message); 
 			setError('Invalid regEmail or regPassword.'); 

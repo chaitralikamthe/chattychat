@@ -32,7 +32,7 @@ const SignupPage=()=> {
 			}); 
 			// Handle successful signup 
 			console.log("Hellooooooooo"+ response.data); 
-			history('/'); 
+			history('/',{state:{regUserName}}); 
 		} catch (error) { 
 			// Handle signup error 
 			console.error('Signup failed:', error.response ? error.response.data : error.message); 

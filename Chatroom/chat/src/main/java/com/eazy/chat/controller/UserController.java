@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +33,8 @@ public class UserController {
        
     @Autowired
     private userService customUserDetails; 
-        
+       
+    @CrossOrigin(origins="*")
     @PostMapping("/signup") 
     public ResponseEntity<AuthResponse> createUserHandler(@RequestBody users user)  { 
     	System.out.println("Request for sign up\n"+ user);
@@ -40,7 +42,7 @@ public class UserController {
         String password = user.getRegPassword(); 
         String fullName = user.getRegUserName(); 
         String mobile = user.getRegMobile(); 
-  
+        
         users isEmailExist = userRepository.findByRegEmail(email); 
         if (isEmailExist != null) { 
             //throw new Exception("Email Is Already Used With Another Account"); 
@@ -51,6 +53,7 @@ public class UserController {
         createdUser.setRegUserName(fullName); 
         createdUser.setRegMobile(mobile); 
         createdUser.setRegPassword(passwordEncoder.encode(password)); 
+        createdUser.setUserName(createdUser.getRegEmail().substring(0,createdUser.getRegEmail().indexOf("@")));
           
         users savedUser = userRepository.save(createdUser); 
           userRepository.save(savedUser); 
@@ -67,7 +70,7 @@ public class UserController {
   
     } 
   
-  
+    @CrossOrigin(origins="*")
     @PostMapping("/signin") 
     public ResponseEntity<AuthResponse> signin(@RequestBody users loginRequest) { 
         String username = loginRequest.getRegEmail(); 
@@ -90,7 +93,7 @@ public class UserController {
   
   
   
-      
+    @CrossOrigin(origins="*") 
     private Authentication authenticate(String username, String password) { 
   
         System.out.println(username+"---++----"+password); 

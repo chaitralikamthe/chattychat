@@ -33,5 +33,8 @@ public class users extends baseEntity{
 	
     @Size(min=10, message="Mobile number must be 10 digits")
 	private String regMobile;
+    
+    
+    private String userName;
 
 }
