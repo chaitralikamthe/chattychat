@@ -4,6 +4,7 @@ import {useLocation} from 'react-router-dom';
 import {over} from 'stompjs';
 import SockJS from 'sockjs-client';
 import axios from 'axios';
+import { connect } from 'net';
 
 
 var stompClient=null;
@@ -18,9 +19,11 @@ const Chats = () => {
         connected:false,
         message:"",
 })
+const connect=()=>{
 let Sock= new SockJS('http://localhost:8081/ws');       
 stompClient=over(Sock);  
-
+stompClient.connect({},()=>{onConnected()},onError);   
+}
 
     const onConnected=()=>{
         setuserdata({...userdata,"connected":true});
@@ -33,9 +36,9 @@ stompClient=over(Sock);
         console.log(err);        
     }
                                
-    stompClient.connect({},()=>{onConnected()},onError);   
 
-    const userJoin=(flag)=>{
+
+    const userJoin=()=>{
         const chatMessage={
                 senderName:userdata.userName,
                 statuss:'REGISTERED'
@@ -113,6 +116,9 @@ stompClient=over(Sock);
 
   return (
     <div className='container'>
+        {userdata.connected== false ?
+        <div><button id="start" onClick={connect}>Start</button></div>
+        :
         <div className='chat-box'>
             <div className='member-list'>
             <h1 className='joiner'>{userdata.userName}'s Chatbox</h1>
@@ -181,9 +187,10 @@ stompClient=over(Sock);
                 </div>
             </div>
 
-         }</div>      
+         }</div>  
+        }    
    </div>
-                   
+                       
 )
 
 }

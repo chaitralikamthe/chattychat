@@ -1,10 +1,7 @@
 import React, { useState } from 'react'; 
 import axios from 'axios'; 
 import { useNavigate } from 'react-router-dom'; // Import useHistory hook 
-import { 
-	MDBContainer, 
-	MDBInput
-} from 'mdb-react-ui-kit'; 
+
 
 const SignupPage=()=> { 
     const [regUserName, setRegUserName] = useState(''); 
@@ -44,27 +41,27 @@ const SignupPage=()=> {
 	}; 
 
 	return ( 
-		<div className="d-flex justify-content-center align-items-center vh-100"> 
-			<div className="border rounded-lg p-4" style={{width: '600px', height: 'auto'}}> 
-				<MDBContainer className="p-3"> 
+		<div className="login"> 
+			<div className="loginComponents"  style={{width: '600px', height: 'auto'}}> 
+				<form> 
 					<h2 className="mb-4 text-center">Sign Up Page</h2> 
 
-					<MDBInput wrapperClass='mb-3' id='regUserName' placeholder="Your Name" value={regUserName} type='text'
+					<input className="comp" id='regUserName' placeholder="Your Name" value={regUserName} type='text'
 							onChange={(e) => setRegUserName(e.target.value)}/> 
-					<MDBInput wrapperClass='mb-3' placeholder='Email Address' id='regEmail' value={regEmail} type='regEmail'
+					<input className="comp" placeholder='Email Address' id='regEmail' value={regEmail} type='regEmail'
 							onChange={(e) => setRegEmail(e.target.value)}/> 
-					<MDBInput wrapperClass='mb-3' placeholder='Password' id='regPassword' type='regPassword' value={regPassword} 
+					<input className="comp" placeholder='Password' id='regPassword' type='regPassword' value={regPassword} 
 							onChange={(e) => setRegPassword(e.target.value)}/> 
-					<MDBInput wrapperClass='mb-3' placeholder='Confirm Password' id='confirmPassword' type='regPassword'
+					<input className="comp" placeholder='Confirm Password' id='confirmPassword' type='regPassword'
 							value={confirmPassword} 
 							onChange={(e) => setConfirmPassword(e.target.value)}/> 
 
 
-					<MDBInput wrapperClass='mb-2' placeholder='Mobile Number' id='mobileNumber' value={regMobile} 
+					<input className="comp" placeholder='Mobile Number' id='mobileNumber' value={regMobile} 
 							type='text'
 							onChange={(e) => setRegMobileNumber(e.target.value)}/> 
 				
-					<button className="mb-4 d-block mx-auto fixed-action-btn btn-primary"
+					<button className="comp"
 							style={{height: '40px', width: '100%'}} 
 							onClick={handleSignup}>Sign Up 
 					</button> 
@@ -73,7 +70,7 @@ const SignupPage=()=> {
 						<p>Already Register? <a href="/">Login</a></p> 
 					</div> 
 
-				</MDBContainer> 
+				</form> 
 			</div> 
 		</div> 
 	); 
