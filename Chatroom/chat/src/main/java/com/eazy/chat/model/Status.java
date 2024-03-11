@@ -1,7 +1,10 @@
 package com.eazy.chat.model;
 
 public enum Status {
-	JOIN,
+	REGREQUEST,
 	MESSAGE,
-	LEAVE
+	LEAVE,
+	REGISTERED,
+	NONREGISTERED,
+	JOINING	
 }
